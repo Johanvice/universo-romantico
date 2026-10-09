@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Nuestro Pequeño Universo 💜</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Pantalla de entrada -->
+    <div id="entrance-screen">
+        <canvas id="entrance-canvas"></canvas>
+        <div class="entrance-content">
+            <div class="heart-container" id="entrance-heart"></div>
+            <h1 class="entrance-title">Para alguien muy especial</h1>
+            <p class="entrance-subtitle">
+                Sé que estamos lejos y hoy no puedo entregarte un ramo de flores en persona...
+                <br><br>
+                así que construí este pequeño universo lleno de flores moradas, estrellas y un corazón gigante.
+                <br><br>
+                Solo para ti. 🌌💜
+            </p>
+            <button id="enter-button">
+                <span class="btn-glow"></span>
+                <span class="btn-text">✨ ENTRAR AL UNIVERSO ✨</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Universo principal -->
+    <div id="universe-container" class="hidden">
+        <canvas id="universe-canvas"></canvas>
+        <div id="ui-overlay">
+            <div class="top-text">Nuestro pequeño universo 💜</div>
+            <button id="music-toggle" class="music-btn" title="Música">🎵</button>
+            <div id="discover-hint" class="discover-hint">Toca las flores ✨</div>
+        </div>
+    </div>
+
+    <!-- Canvas de la transición warp (velocidad de la luz morada) -->
+    <canvas id="warp-canvas" class="hidden"></canvas>
+
+    <!-- Botón flotante para abrir el mensaje final -->
+    <button id="open-final-btn" class="open-final-btn hidden" title="Un mensaje para ti 💜">
+        💌
+    </button>
+
+    <!-- Modal de mensaje de cada flor -->
+    <div id="flower-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-flower-img-container">
+                <img id="modal-flower-img" src="" alt="Flor">
+            </div>
+            <p id="modal-message"></p>
+            <div class="modal-heart">💜</div>
+            <button id="close-modal">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- Overlay del mensaje final -->
+    <div id="final-screen" class="hidden">
+        <canvas id="final-canvas"></canvas>
+        <button id="close-final-btn" class="close-final-btn" title="Cerrar">✕</button>
+        <div class="final-content">
+            <div class="final-stars">✦ ✧ ✦</div>
+            <p id="final-text-1">
+                Eres una de esas personas<br>
+                que hacen el mundo más bonito<br>
+                solo con existir. 💜
+            </p>
+            <p id="final-text-2" class="hidden">
+                Gracias por cada momento,<br>
+                por cada risa y por estar<br>
+                siempre cuando te necesito. 🌸
+            </p>
+            <div class="final-divider hidden" id="final-divider">✦ ─── 💜 ─── ✦</div>
+            <p id="final-text-3" class="hidden">
+                Este pequeño universo<br>
+                lo hice pensando en ti.
+            </p>
+            <p id="final-signature" class="hidden">
+                <em>Con cariño,</em><br>
+                <strong>tu mejor amigo. 💜</strong>
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

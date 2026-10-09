@@ -1,0 +1,682 @@
+/* ============================================
+   RESET
+   ============================================ */
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    width: 100%; height: 100%;
+    overflow: hidden;
+    background: #0a0a1a;
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+    color: #e0d4f5;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    overscroll-behavior: none;
+}
+
+.hidden { display: none !important; }
+
+/* ============================================
+   PANTALLA DE ENTRADA
+   ============================================ */
+#entrance-screen {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100dvh;
+    background:
+        radial-gradient(ellipse at 50% 40%, #3a0f6e 0%, #1a0a2e 35%, #0d0518 70%, #000000 100%);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 100; overflow: hidden;
+}
+
+#entrance-canvas {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%; z-index: 1;
+}
+
+.entrance-content {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 440px;
+}
+
+.heart-container {
+    width: 160px; height: 160px; margin-bottom: 20px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 25px rgba(200, 140, 255, 0.9))
+            drop-shadow(0 0 60px rgba(160, 90, 230, 0.5));
+    animation: heartFloat 4s ease-in-out infinite;
+}
+
+@keyframes heartFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-8px) scale(1.03); }
+}
+
+/* Título principal — Dancing Script romántico */
+.entrance-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.6rem;
+    font-weight: 700;
+    background: linear-gradient(135deg,
+        #ffffff 0%,
+        #f0d8ff 20%,
+        #d8a8ff 45%,
+        #b070f0 70%,
+        #ffffff 100%);
+    background-size: 250% 250%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 22px;
+    letter-spacing: 1px;
+    line-height: 1.25;
+    text-align: center;
+    filter: drop-shadow(0 0 18px rgba(210, 160, 255, 0.95))
+            drop-shadow(0 0 38px rgba(170, 100, 245, 0.7))
+            drop-shadow(0 0 60px rgba(140, 80, 220, 0.4));
+    animation: gradientShift 4s ease-in-out infinite;
+    position: relative;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* Subtítulo — Cormorant Garamond elegante */
+.entrance-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: #e0ccff;
+    margin-bottom: 34px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    line-height: 1.75;
+    opacity: 0.98;
+    text-shadow:
+        0 0 12px rgba(200, 150, 255, 0.55),
+        0 0 24px rgba(170, 110, 245, 0.35);
+    max-width: 400px;
+}
+
+/* Botón con tipografía Poppins */
+#enter-button {
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #6a1aa0 0%, #a040e0 50%, #6a1aa0 100%);
+    background-size: 200% 200%;
+    color: #ffffff;
+    border: 1.5px solid rgba(220, 170, 255, 0.7);
+    border-radius: 50px;
+    padding: 18px 36px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow:
+        0 0 30px rgba(170, 100, 255, 0.6),
+        0 0 70px rgba(150, 80, 240, 0.35),
+        0 0 100px rgba(140, 70, 230, 0.2),
+        inset 0 0 25px rgba(220, 170, 255, 0.15);
+    animation: buttonPulseEnhanced 2.8s ease-in-out infinite;
+    touch-action: manipulation;
+    min-height: 60px;
+    min-width: 280px;
+    overflow: hidden;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    z-index: 1;
+}
+
+.btn-glow {
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    animation: btnShine 3s infinite;
+    pointer-events: none;
+}
+
+@keyframes btnShine {
+    0% { left: -100%; }
+    50%, 100% { left: 200%; }
+}
+
+.btn-text {
+    position: relative;
+    z-index: 2;
+}
+
+#enter-button:hover {
+    transform: scale(1.06);
+    box-shadow:
+        0 0 45px rgba(190, 120, 255, 0.9),
+        0 0 90px rgba(170, 100, 255, 0.5),
+        0 0 130px rgba(160, 90, 250, 0.3),
+        inset 0 0 30px rgba(230, 180, 255, 0.25);
+    background-position: 100% 100%;
+}
+
+#enter-button:active { transform: scale(0.97); }
+
+@keyframes buttonPulseEnhanced {
+    0%, 100% {
+        box-shadow:
+            0 0 30px rgba(170, 100, 255, 0.6),
+            0 0 70px rgba(150, 80, 240, 0.35),
+            0 0 100px rgba(140, 70, 230, 0.2),
+            inset 0 0 25px rgba(220, 170, 255, 0.15);
+    }
+    50% {
+        box-shadow:
+            0 0 45px rgba(190, 120, 255, 0.85),
+            0 0 90px rgba(170, 100, 255, 0.5),
+            0 0 130px rgba(160, 90, 250, 0.3),
+            inset 0 0 30px rgba(230, 180, 255, 0.25);
+    }
+}
+
+#entrance-screen.transitioning {
+    animation: zoomOut 2.5s ease-in-out forwards;
+}
+
+@keyframes zoomOut {
+    0% { transform: scale(1); opacity: 1; filter: blur(0); }
+    40% { transform: scale(1.15); opacity: 1; filter: blur(1px); }
+    100% { transform: scale(3); opacity: 0; filter: blur(8px); }
+}
+
+/* ============================================
+   WARP CANVAS
+   ============================================ */
+#warp-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 150;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, rgba(60, 15, 120, 0.4) 0%, rgba(20, 5, 40, 0.9) 60%, #000 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#warp-canvas.active { opacity: 1; }
+
+/* ============================================
+   UNIVERSO
+   ============================================ */
+#universe-container {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100dvh;
+    z-index: 10;
+    background: radial-gradient(ellipse at center, #1e0940 0%, #150630 45%, #08031a 85%, #000 100%);
+}
+
+#universe-canvas {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: block; touch-action: none; cursor: grab;
+}
+
+#universe-canvas:active { cursor: grabbing; }
+
+#ui-overlay {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; z-index: 20;
+}
+
+.top-text {
+    position: absolute; top: 18px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.78rem;
+    color: rgba(220, 190, 255, 0.85);
+    letter-spacing: 1.6px;
+    text-shadow: 0 0 12px rgba(190, 130, 255, 0.7);
+    font-weight: 300; white-space: nowrap;
+    padding: 6px 14px;
+    background: rgba(45, 15, 85, 0.45);
+    border-radius: 16px;
+    border: 1px solid rgba(170, 110, 255, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    opacity: 0.85;
+}
+
+.music-btn {
+    position: absolute; top: 20px; right: 20px;
+    width: 48px; height: 48px; border-radius: 50%;
+    background: rgba(55, 25, 100, 0.75);
+    border: 1px solid rgba(170, 110, 255, 0.55);
+    color: #e8d0ff; font-size: 1.2rem;
+    cursor: pointer; pointer-events: auto;
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(150, 90, 240, 0.45);
+    touch-action: manipulation; z-index: 30;
+}
+
+.music-btn:hover {
+    background: rgba(90, 40, 160, 0.85);
+    box-shadow: 0 0 30px rgba(190, 130, 255, 0.7);
+    transform: scale(1.05);
+}
+
+.music-btn:active { transform: scale(0.95); }
+.music-btn.muted { opacity: 0.5; border-color: rgba(100, 60, 150, 0.3); }
+
+.discover-hint {
+    position: absolute; bottom: 30px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.85rem;
+    color: rgba(220, 190, 255, 0.9);
+    letter-spacing: 1.2px;
+    text-shadow: 0 0 12px rgba(190, 130, 255, 0.8);
+    font-weight: 300;
+    padding: 8px 18px;
+    background: rgba(45, 15, 85, 0.6);
+    border-radius: 20px;
+    border: 1px solid rgba(170, 110, 255, 0.4);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: opacity 0.8s ease;
+    white-space: nowrap;
+    animation: hintPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes hintPulse {
+    0%, 100% { box-shadow: 0 0 15px rgba(170, 110, 255, 0.4); }
+    50% { box-shadow: 0 0 30px rgba(190, 130, 255, 0.8); }
+}
+
+.discover-hint.fade-out { opacity: 0; }
+
+/* ============================================
+   MODAL DE FLOR
+   ============================================ */
+.modal {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100dvh;
+    background: rgba(10, 3, 25, 0.85);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 200; padding: 20px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    animation: modalFadeIn 0.4s ease;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+}
+
+.modal-content {
+    background: linear-gradient(160deg, rgba(60, 25, 105, 0.96), rgba(35, 12, 70, 0.96));
+    border: 1px solid rgba(190, 130, 255, 0.55);
+    border-radius: 24px;
+    padding: 30px 25px;
+    max-width: 340px; width: 100%;
+    text-align: center;
+    box-shadow: 0 0 60px rgba(150, 90, 240, 0.55), inset 0 0 40px rgba(130, 70, 220, 0.18);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    animation: modalSlideUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalSlideUp {
+    from { transform: translateY(40px) scale(0.9); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.modal-flower-img-container {
+    width: 90px; height: 90px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: rgba(85, 35, 150, 0.65);
+    border: 2px solid rgba(190, 130, 255, 0.65);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(170, 110, 255, 0.65);
+}
+
+.modal-flower-img-container img {
+    width: 90%; height: 90%; object-fit: contain;
+}
+
+#modal-message {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    color: #f5e8ff;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    font-weight: 400;
+    letter-spacing: 0.4px;
+    text-shadow: 0 0 15px rgba(210, 160, 255, 0.5);
+}
+
+.modal-heart {
+    font-size: 1.5rem; margin-bottom: 20px;
+    animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+#close-modal {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #5a1a9a 0%, #8b3fce 100%);
+    color: #f0e6ff;
+    border: 1px solid rgba(210, 160, 255, 0.55);
+    border-radius: 25px;
+    padding: 12px 40px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    box-shadow: 0 0 25px rgba(170, 110, 255, 0.55);
+    touch-action: manipulation;
+    min-height: 48px;
+    font-weight: 500;
+}
+
+#close-modal:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px rgba(190, 130, 255, 0.75);
+}
+
+#close-modal:active { transform: scale(0.95); }
+
+/* ============================================
+   BOTÓN FLOTANTE MENSAJE FINAL
+   ============================================ */
+.open-final-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #5a1a9a 0%, #8b3fce 100%);
+    border: 2px solid rgba(210, 160, 255, 0.7);
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 25px rgba(170, 110, 255, 0.7), 0 0 50px rgba(170, 110, 255, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    animation: finalBtnPulse 2.5s ease-in-out infinite;
+    touch-action: manipulation;
+    transition: transform 0.3s ease;
+}
+
+.open-final-btn:hover,
+.open-final-btn:active {
+    transform: scale(1.12);
+    box-shadow: 0 0 40px rgba(210, 160, 255, 0.9), 0 0 70px rgba(210, 160, 255, 0.5);
+}
+
+@keyframes finalBtnPulse {
+    0%, 100% { box-shadow: 0 0 25px rgba(170, 110, 255, 0.7), 0 0 50px rgba(170, 110, 255, 0.3); }
+    50% { box-shadow: 0 0 35px rgba(210, 160, 255, 0.95), 0 0 70px rgba(210, 160, 255, 0.5); }
+}
+
+@media (max-width: 480px) {
+    .open-final-btn {
+        width: 52px; height: 52px;
+        font-size: 1.35rem;
+        bottom: 20px; right: 20px;
+    }
+}
+
+/* ============================================
+   OVERLAY FINAL
+   ============================================ */
+#final-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100dvh;
+    background:
+        radial-gradient(ellipse at 50% 30%, rgba(80, 25, 140, 0.95) 0%, rgba(40, 12, 80, 0.97) 40%, rgba(13, 5, 24, 0.99) 75%, #000 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 400;
+    padding: 30px;
+    animation: finalFadeIn 1.2s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    overflow: hidden;
+}
+
+@keyframes finalFadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+}
+
+#final-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.7;
+}
+
+.close-final-btn {
+    position: absolute;
+    top: 20px; right: 20px;
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: rgba(70, 30, 130, 0.7);
+    border: 1px solid rgba(190, 140, 255, 0.6);
+    color: #f0e0ff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    z-index: 402;
+    touch-action: manipulation;
+}
+
+.close-final-btn:hover {
+    background: rgba(100, 40, 180, 0.9);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(190, 130, 255, 0.7);
+}
+
+.close-final-btn:active { transform: scale(0.95); }
+
+.final-content {
+    text-align: center;
+    max-width: 420px;
+    position: relative;
+    z-index: 2;
+    animation: finalContentIn 1.2s ease;
+}
+
+@keyframes finalContentIn {
+    from { transform: translateY(30px) scale(0.95); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.final-stars {
+    font-size: 1.1rem;
+    color: #d8b0ff;
+    letter-spacing: 8px;
+    margin-bottom: 20px;
+    text-shadow:
+        0 0 10px rgba(220, 180, 255, 1),
+        0 0 25px rgba(190, 130, 255, 0.9),
+        0 0 45px rgba(160, 90, 240, 0.6);
+    animation: starsFloat 3s ease-in-out infinite;
+}
+
+@keyframes starsFloat {
+    0%, 100% { transform: translateY(0); opacity: 0.9; }
+    50% { transform: translateY(-5px); opacity: 1; }
+}
+
+.final-content p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.45rem;
+    font-style: italic;
+    color: #f0dcff;
+    line-height: 1.9;
+    font-weight: 400;
+    letter-spacing: 0.8px;
+    text-shadow:
+        0 0 15px rgba(200, 140, 255, 0.9),
+        0 0 35px rgba(180, 110, 255, 0.6),
+        0 0 60px rgba(150, 80, 230, 0.4);
+    margin-bottom: 24px;
+    transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+.final-content p.hidden {
+    opacity: 0;
+    transform: translateY(15px);
+}
+
+#final-text-1 {
+    font-size: 1.7rem;
+    font-weight: 600;
+    font-style: normal;
+    letter-spacing: 1.5px;
+    animation: finalTextPulse 3s ease-in-out infinite;
+}
+
+@keyframes finalTextPulse {
+    0%, 100% {
+        text-shadow:
+            0 0 15px rgba(200, 140, 255, 0.9),
+            0 0 35px rgba(180, 110, 255, 0.6),
+            0 0 60px rgba(150, 80, 230, 0.4);
+    }
+    50% {
+        text-shadow:
+            0 0 25px rgba(230, 180, 255, 1),
+            0 0 55px rgba(200, 130, 255, 0.9),
+            0 0 90px rgba(170, 100, 240, 0.6),
+            0 0 130px rgba(150, 80, 220, 0.4);
+    }
+}
+
+.final-divider {
+    font-size: 0.95rem;
+    color: #d8b0ff;
+    letter-spacing: 3px;
+    margin: 15px 0 20px;
+    text-shadow:
+        0 0 12px rgba(220, 180, 255, 0.9),
+        0 0 28px rgba(190, 130, 255, 0.6);
+    transition: opacity 1.2s ease;
+}
+
+.final-divider.hidden { opacity: 0; }
+
+/* Firma final — Great Vibes manuscrita elegante */
+#final-signature {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    line-height: 1.5;
+    color: #e8d0ff;
+    margin-top: 15px;
+    margin-bottom: 0;
+    text-shadow:
+        0 0 15px rgba(210, 160, 255, 0.9),
+        0 0 35px rgba(180, 120, 255, 0.6);
+    letter-spacing: 1px;
+}
+
+#final-signature em {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: #d0b0f0;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    text-shadow:
+        0 0 12px rgba(180, 120, 255, 0.7),
+        0 0 24px rgba(160, 100, 240, 0.4);
+}
+
+#final-signature strong {
+    font-family: 'Great Vibes', cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2.6rem;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg,
+        #ffffff 0%,
+        #e8c8ff 25%,
+        #c890ff 50%,
+        #e8c8ff 75%,
+        #ffffff 100%);
+    background-size: 250% 250%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter:
+        drop-shadow(0 0 15px rgba(220, 180, 255, 1))
+        drop-shadow(0 0 30px rgba(190, 130, 255, 0.8))
+        drop-shadow(0 0 50px rgba(160, 100, 240, 0.5));
+    animation: gradientShift 4s ease-in-out infinite;
+    display: inline-block;
+    margin-top: 6px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 380px) {
+    .entrance-title { font-size: 2.1rem; }
+    .entrance-subtitle { font-size: 1rem; }
+    #enter-button { font-size: 0.88rem; padding: 16px 28px; min-width: 240px; }
+    .heart-container { width: 130px; height: 130px; }
+    .top-text { font-size: 0.72rem; }
+    .discover-hint { font-size: 0.75rem; }
+    .modal-content { padding: 25px 20px; }
+    #modal-message { font-size: 1rem; }
+    #final-text-1 { font-size: 1.35rem; }
+    #final-signature { font-size: 1.6rem; }
+    #final-signature strong { font-size: 2.1rem; }
+    .final-content p { font-size: 1.15rem; }
+    .close-final-btn { width: 38px; height: 38px; font-size: 1rem; }
+}
+
+@media (min-width: 768px) {
+    .entrance-title { font-size: 3.4rem; }
+    .entrance-subtitle { font-size: 1.3rem; }
+    #enter-button { font-size: 1.1rem; padding: 20px 44px; }
+    .heart-container { width: 200px; height: 200px; }
+    .top-text { font-size: 0.9rem; }
+    .discover-hint { font-size: 0.95rem; }
+    .modal-content { max-width: 400px; padding: 40px 35px; }
+    #modal-message { font-size: 1.3rem; }
+    #final-text-1 { font-size: 2rem; }
+    #final-signature { font-size: 2.4rem; }
+    #final-signature strong { font-size: 3.2rem; }
+    .final-content p { font-size: 1.7rem; }
+}
